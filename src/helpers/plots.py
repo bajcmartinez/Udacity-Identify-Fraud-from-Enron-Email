@@ -1,8 +1,4 @@
-import sys
-
-sys.path.append("../tools/")
-
-from tools.feature_format import featureFormat
+from src.tools.feature_format import featureFormat
 import matplotlib.pyplot as plt
 
 
@@ -22,6 +18,23 @@ def scatter(data, features):
 
     plt.xlabel(features[0])
     plt.ylabel(features[1])
+    plt.show()
+
+    return points
+
+
+def histogram(data, feature):
+    """
+    Renders a scatter plot based on the provided features and data
+
+    :param feature:
+    :param data:
+    :return: rendered points
+    """
+    points = featureFormat(data, [feature])
+
+    plt.hist(points)
+    plt.xlabel(feature)
     plt.show()
 
     return points

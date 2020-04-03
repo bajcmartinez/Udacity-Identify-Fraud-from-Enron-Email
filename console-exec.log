@@ -1,0 +1,100 @@
+/home/bajcmartinez/anaconda3/envs/test/lib/python2.7/site-packages/sklearn/cross_validation.py:44: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
+  "This module will be removed in 0.20.", DeprecationWarning)
+/home/bajcmartinez/anaconda3/envs/test/lib/python2.7/site-packages/sklearn/grid_search.py:43: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. This module will be removed in 0.20.
+  DeprecationWarning)
+List of People: 
+METTS MARK, BAXTER JOHN C, ELLIOTT STEVEN, CORDES WILLIAM R, HANNON KEVIN P, MORDAUNT KRISTINA M, MEYER ROCKFORD G, MCMAHON JEFFREY, HORTON STANLEY C, PIPER GREGORY F, HUMPHREY GENE E, UMANOFF ADAM S, BLACHMAN JEREMY M, SUNDE MARTIN, GIBBS DANA R, LOWRY CHARLES P, COLWELL WESLEY, MULLER MARK S, JACKSON CHARLENE R, WESTFAHL RICHARD K, WALTERS GARETH W, WALLS JR ROBERT H, KITCHEN LOUISE, CHAN RONNIE, BELFER ROBERT, SHANKMAN JEFFREY A, WODRASKA JOHN, BERGSIEKER RICHARD P, URQUHART JOHN A, BIBI PHILIPPE A, RIEKER PAULA H, WHALEY DAVID A, BECK SALLY W, HAUG DAVID L, ECHOLS JOHN B, MENDELSOHN JOHN, HICKERSON GARY J, CLINE KENNETH W, LEWIS RICHARD, HAYES ROBERT E, MCCARTY DANNY J, KOPPER MICHAEL J, LEFF DANIEL P, LAVORATO JOHN J, BERBERIAN DAVID, DETMERING TIMOTHY J, WAKEHAM JOHN, POWERS WILLIAM, GOLD JOSEPH, BANNANTINE JAMES M, DUNCAN JOHN H, SHAPIRO RICHARD S, SHERRIFF JOHN R, SHELBY REX, LEMAISTRE CHARLES, DEFFNER JOSEPH M, KISHKILL JOSEPH G, WHALLEY LAWRENCE G, MCCONNELL MICHAEL S, PIRO JIM, DELAINEY DAVID W, SULLIVAN-SHAKLOVITZ COLLEEN, WROBEL BRUCE, LINDHOLM TOD A, MEYER JEROME J, LAY KENNETH L, BUTTS ROBERT H, OLSON CINDY K, MCDONALD REBECCA, CUMBERLAND MICHAEL S, GAHN ROBERT S, MCCLELLAN GEORGE, HERMANN ROBERT J, SCRIMSHAW MATTHEW, GATHMANN WILLIAM D, HAEDICKE MARK E, BOWEN JR RAYMOND M, GILLIS JOHN, FITZGERALD JAY L, MORAN MICHAEL P, REDMOND BRIAN L, BAZELIDES PHILIP J, BELDEN TIMOTHY N, DURAN WILLIAM D, THORN TERENCE H, FASTOW ANDREW S, FOY JOE, CALGER CHRISTOPHER F, RICE KENNETH D, KAMINSKI WINCENTY J, LOCKHART EUGENE E, COX DAVID, OVERDYKE JR JERE C, PEREIRA PAULO V. FERRAZ, STABLER FRANK, SKILLING JEFFREY K, BLAKE JR. NORMAN P, SHERRICK JEFFREY B, PRENTICE JAMES, GRAY RODNEY, PICKERING MARK R, THE TRAVEL AGENCY IN THE PARK, NOLES JAMES L, KEAN STEVEN J, TOTAL, FOWLER PEGGY, WASAFF GEORGE, WHITE JR THOMAS E, CHRISTODOULOU DIOMEDES, ALLEN PHILLIP K, SHARP VICTORIA T, JAEDICKE ROBERT, WINOKUR JR. HERBERT S, BROWN MICHAEL, BADUM JAMES P, HUGHES JAMES A, REYNOLDS LAWRENCE, DIMICHELE RICHARD G, BHATNAGAR SANJAY, CARTER REBECCA C, BUCHANAN HAROLD G, YEAP SOON, MURRAY JULIA H, GARLAND C KEVIN, DODSON KEITH, YEAGER F SCOTT, HIRKO JOSEPH, DIETRICH JANET R, DERRICK JR. JAMES V, FREVERT MARK A, PAI LOU L, BAY FRANKLIN R, HAYSLETT RODERICK J, FUGH JOHN L, FALLON JAMES B, KOENIG MARK E, SAVAGE FRANK, IZZO LAWRENCE L, TILNEY ELIZABETH A, MARTIN AMANDA K, BUY RICHARD B, GRAMM WENDY L, CAUSEY RICHARD A, TAYLOR MITCHELL S, DONAHUE JR JEFFREY M, GLISAN JR BEN F
+
+
+
+Some persons data as examples:
+{   'bonus': 600000,
+    'deferral_payments': 'NaN',
+    'deferred_income': 'NaN',
+    'director_fees': 'NaN',
+    'email_address': 'mark.metts@enron.com',
+    'exercised_stock_options': 'NaN',
+    'expenses': 94299,
+    'from_messages': 29,
+    'from_poi_to_this_person': 38,
+    'from_this_person_to_poi': 1,
+    'loan_advances': 'NaN',
+    'long_term_incentive': 'NaN',
+    'other': 1740,
+    'poi': False,
+    'restricted_stock': 585062,
+    'restricted_stock_deferred': 'NaN',
+    'salary': 365788,
+    'shared_receipt_with_poi': 702,
+    'to_messages': 807,
+    'total_payments': 1061827,
+    'total_stock_value': 585062}
+{   'bonus': 600000,
+    'deferral_payments': 'NaN',
+    'deferred_income': 'NaN',
+    'director_fees': 'NaN',
+    'email_address': 'ben.glisan@enron.com',
+    'exercised_stock_options': 384728,
+    'expenses': 125978,
+    'from_messages': 16,
+    'from_poi_to_this_person': 52,
+    'from_this_person_to_poi': 6,
+    'loan_advances': 'NaN',
+    'long_term_incentive': 71023,
+    'other': 200308,
+    'poi': True,
+    'restricted_stock': 393818,
+    'restricted_stock_deferred': 'NaN',
+    'salary': 274975,
+    'shared_receipt_with_poi': 874,
+    'to_messages': 873,
+    'total_payments': 1272284,
+    'total_stock_value': 778546}
+
+
+
+('Number of persons:', 146)
+('Number of POIs:', 18)
+('POIs:', 'HANNON KEVIN P, COLWELL WESLEY, RIEKER PAULA H, KOPPER MICHAEL J, SHELBY REX, DELAINEY DAVID W, LAY KENNETH L, BOWEN JR RAYMOND M, BELDEN TIMOTHY N, FASTOW ANDREW S, CALGER CHRISTOPHER F, RICE KENNETH D, SKILLING JEFFREY K, YEAGER F SCOTT, HIRKO JOSEPH, KOENIG MARK E, CAUSEY RICHARD A, GLISAN JR BEN F')
+Finding possible outliers...
+Found 4 potential outliers, "LAVORATO JOHN J, LAY KENNETH L, SKILLING JEFFREY K, FREVERT MARK A"
+  -> "LAVORATO JOHN J" is excluded for having high interactions with a POI
+  -> "LAY KENNETH L" is excluded for being a POI
+  -> "SKILLING JEFFREY K" is excluded for being a POI
+  -> "FREVERT MARK A" is excluded for having high interactions with a POI
+Found 0 actual outliers, ""
+Removed 0 outliers from the dataset
+Adding features...
+Finding optimal features
+Optimal features:
+[('salary', '3.12', '0.077'),
+ ('total_payments', '2.81', '0.094'),
+ ('loan_advances', '6.74', '0.009'),
+ ('bonus', '5.19', '0.023'),
+ ('total_stock_value', '5.54', '0.019'),
+ ('expenses', '1.53', '0.217'),
+ ('exercised_stock_options', '6.93', '0.008'),
+ ('other', '1.71', '0.191'),
+ ('long_term_incentive', '2.58', '0.108'),
+ ('shared_receipt_with_poi', '2.48', '0.115')]
+Trying classifiers for features: [poi, salary, total_payments, loan_advances, bonus, total_stock_value, expenses, exercised_stock_options, other, long_term_incentive, shared_receipt_with_poi]
+Trying GaussianNB...
+/home/bajcmartinez/anaconda3/envs/test/lib/python2.7/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 due to no predicted samples.
+  'precision', 'predicted', average, warn_for)
+accuracy: 0.750697674419
+precision: 0.309314919314
+recall:    0.33776984127
+Trying AdaBoost...
+accuracy: 0.829302325581
+precision: 0.330532828283
+recall:    0.31175
+Trying RandomForest...
+accuracy: 0.859302325581
+precision: 0.332976190476
+recall:    0.15805952381
+Trying SVC...
+/home/bajcmartinez/anaconda3/envs/test/lib/python2.7/site-packages/sklearn/svm/base.py:220: ConvergenceWarning: Solver terminated early (max_iter=1000).  Consider pre-processing your data with StandardScaler or MinMaxScaler.
+  % self.max_iter, ConvergenceWarning)
+accuracy: 0.513023255814
+precision: 0.194920406623
+recall:    0.558857142857
