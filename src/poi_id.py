@@ -6,9 +6,9 @@ sys.path.append(os.getcwd()[:os.getcwd().index('src')])
 import pickle
 from tools.feature_format import featureFormat, targetFeatureSplit
 from tester import dump_classifier_and_data
-from helpers.analyse import analyse, fix, try_classifiers, find_optimal_features
+from helpers.analyse import analyse, fix, try_classifiers
 from helpers.outliers import remove_outliers, find_outliers
-from helpers.features import create_new_features
+from helpers.features import create_new_features, find_optimal_features
 
 ### Task 1: Select what features you'll use.
 ### features_list is a list of strings, each of which is a feature name.

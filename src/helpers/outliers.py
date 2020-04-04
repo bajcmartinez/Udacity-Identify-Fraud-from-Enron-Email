@@ -14,8 +14,15 @@ def find_outliers(data):
     print('Finding possible outliers...')
     potential_outliers = []
     for person in data:
-        if data[person]['salary'] > 800000 or data[person]['bonus'] > 6000000:
+        if data[person]['salary'] > 800000 or data[person]['bonus'] > 6000000 or \
+                (data[person]['salary'] == 0 and data[person]['bonus'] == 0 and
+                 data[person]['total_payments'] == 0 and data[person]['from_poi_to_this_person'] == 0 and
+                 data[person]['total_stock_value'] == 0 and data[person]['from_this_person_to_poi'] == 0 and
+                 data[person]['from_messages'] == 'NaN' and data[person]['to_messages'] == 'NaN'):
             potential_outliers.append(person)
+
+    # There is one key which is not an actual name:
+    potential_outliers.append('THE TRAVEL AGENCY IN THE PARK')
 
     print('Found {:,} potential outliers, "{}"'.format(len(potential_outliers), ', '.join(potential_outliers)))
     # Let's examine now the potential outliers
@@ -41,9 +48,12 @@ def remove_outliers(data, outliers):
     :return: same data without the outliers
     """
     ds = dict(data)
+    print("Items on the DS before removal:", len(ds))
+
     for outlier in outliers:
         ds.pop(outlier, None)
 
     print('Removed {:,} outliers from the dataset'.format(len(outliers)))
+    print("Items on the DS after removal:", len(ds))
 
     return ds

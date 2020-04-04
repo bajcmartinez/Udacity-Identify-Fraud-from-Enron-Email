@@ -20,3 +20,6 @@ The execution will print out all processing steps with analysis and conclusions,
 
 ## Sample execution
 In the file `console-exec.log` I stored my last execution output as a reference. 
+
+## Report
+Read the file `report.md` for additional information about the data exploration process

@@ -1,10 +1,8 @@
 from pprint import pprint
-from sklearn import preprocessing
 from sklearn.ensemble import AdaBoostClassifier, RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
-from sklearn.feature_selection import SelectKBest, chi2
 from src.tools.feature_format import featureFormat, targetFeatureSplit
 from sklearn.cross_validation import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score
@@ -32,7 +30,10 @@ def analyse(data):
 
     # Let's now find out what kind of data is present for each person, we will take a few samples for the analysis
     print('Some persons data as examples:')
+    print('{}:'.format(persons[0]))
     pprint(data[persons[0]], indent=4)
+
+    print('{}:'.format(persons[-1]))
     pprint(data[persons[-1]], indent=4)
 
     # Let's find out how many POIs we have on the dataset
@@ -52,10 +53,6 @@ def fix(data):
     :param data:
     :return:
     """
-    # Remove the total
-    ds = dict(data)
-    del ds['TOTAL']
-
     # Replace NaN values for zeros
     ff = [
         'salary',
@@ -77,51 +74,11 @@ def fix(data):
     ]
 
     for f in ff:
-        for person in ds:
-            if ds[person][f] == 'NaN':
-                ds[person][f] = 0
+        for person in data:
+            if data[person][f] == 'NaN':
+                data[person][f] = 0
 
-    return ds
-
-
-def find_optimal_features(data, features_list):
-    """
-
-    :param data:
-    :param features_list
-    :return:
-    """
-    print('Finding optimal features')
-    ds = featureFormat(data, features_list, sort_keys=True)
-    labels, features = targetFeatureSplit(ds)
-
-    # Set up the scaler
-    minmax_scaler = preprocessing.MinMaxScaler()
-    features_minmax = minmax_scaler.fit_transform(features)
-
-    # Apply SelectKBest
-    k_best = SelectKBest(chi2, k=10)
-
-    # Use the instance to extract the k best features
-    k_best.fit_transform(features_minmax, labels)
-
-    feature_scores = ['%.2f' % elem for elem in k_best.scores_]
-    feature_scores_pvalues = ['%.3f' % elem for elem in k_best.pvalues_]
-    k_indices = k_best.get_support(indices=True)
-
-    k_features = [(features_list[i + 1],
-                   feature_scores[i],
-                   feature_scores_pvalues[i]) for i in k_indices]
-
-    print('Optimal features:')
-    pprint(k_features)
-
-    optimal = [features_list[i + 1] for i in k_indices]
-    # If poi was not selected, let's manually add it, I'd like to keep it
-    if 'poi' not in optimal:
-        optimal.insert(0, 'poi')
-
-    return optimal
+    return data
 
 
 def evaluate_clf(grid_search, features, labels, params, iters=100):

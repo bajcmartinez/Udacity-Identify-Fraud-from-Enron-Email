@@ -8,6 +8,7 @@ METTS MARK, BAXTER JOHN C, ELLIOTT STEVEN, CORDES WILLIAM R, HANNON KEVIN P, MOR
 
 
 Some persons data as examples:
+METTS MARK:
 {   'bonus': 600000,
     'deferral_payments': 'NaN',
     'deferred_income': 'NaN',
@@ -29,6 +30,7 @@ Some persons data as examples:
     'to_messages': 807,
     'total_payments': 1061827,
     'total_stock_value': 585062}
+GLISAN JR BEN F:
 {   'bonus': 600000,
     'deferral_payments': 'NaN',
     'deferred_income': 'NaN',
@@ -57,44 +59,48 @@ Some persons data as examples:
 ('Number of POIs:', 18)
 ('POIs:', 'HANNON KEVIN P, COLWELL WESLEY, RIEKER PAULA H, KOPPER MICHAEL J, SHELBY REX, DELAINEY DAVID W, LAY KENNETH L, BOWEN JR RAYMOND M, BELDEN TIMOTHY N, FASTOW ANDREW S, CALGER CHRISTOPHER F, RICE KENNETH D, SKILLING JEFFREY K, YEAGER F SCOTT, HIRKO JOSEPH, KOENIG MARK E, CAUSEY RICHARD A, GLISAN JR BEN F')
 Finding possible outliers...
-Found 4 potential outliers, "LAVORATO JOHN J, LAY KENNETH L, SKILLING JEFFREY K, FREVERT MARK A"
+Found 8 potential outliers, "CHAN RONNIE, LAVORATO JOHN J, LAY KENNETH L, LOCKHART EUGENE E, SKILLING JEFFREY K, TOTAL, FREVERT MARK A, THE TRAVEL AGENCY IN THE PARK"
   -> "LAVORATO JOHN J" is excluded for having high interactions with a POI
   -> "LAY KENNETH L" is excluded for being a POI
   -> "SKILLING JEFFREY K" is excluded for being a POI
   -> "FREVERT MARK A" is excluded for having high interactions with a POI
-Found 0 actual outliers, ""
-Removed 0 outliers from the dataset
+Found 4 actual outliers, "CHAN RONNIE, LOCKHART EUGENE E, TOTAL, THE TRAVEL AGENCY IN THE PARK"
+('Items on the DS before removal:', 146)
+Removed 4 outliers from the dataset
+('Items on the DS after removal:', 142)
 Adding features...
 Finding optimal features
 Optimal features:
-[('salary', '3.12', '0.077'),
- ('total_payments', '2.81', '0.094'),
- ('loan_advances', '6.74', '0.009'),
- ('bonus', '5.19', '0.023'),
- ('total_stock_value', '5.54', '0.019'),
- ('expenses', '1.53', '0.217'),
- ('exercised_stock_options', '6.93', '0.008'),
- ('other', '1.71', '0.191'),
- ('long_term_incentive', '2.58', '0.108'),
- ('shared_receipt_with_poi', '2.48', '0.115')]
+[('salary', '2.99', '0.084'),
+ ('total_payments', '2.75', '0.097'),
+ ('loan_advances', '6.63', '0.010'),
+ ('bonus', '5.05', '0.025'),
+ ('total_stock_value', '5.41', '0.020'),
+ ('expenses', '1.45', '0.229'),
+ ('exercised_stock_options', '6.76', '0.009'),
+ ('other', '1.69', '0.193'),
+ ('long_term_incentive', '2.50', '0.114'),
+ ('shared_receipt_with_poi', '2.38', '0.123')]
 Trying classifiers for features: [poi, salary, total_payments, loan_advances, bonus, total_stock_value, expenses, exercised_stock_options, other, long_term_incentive, shared_receipt_with_poi]
 Trying GaussianNB...
 /home/bajcmartinez/anaconda3/envs/test/lib/python2.7/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 due to no predicted samples.
   'precision', 'predicted', average, warn_for)
-accuracy: 0.750697674419
-precision: 0.309314919314
-recall:    0.33776984127
+accuracy: 0.723255813953
+precision: 0.362344248041
+recall:    0.350944444444
 Trying AdaBoost...
+/home/bajcmartinez/anaconda3/envs/test/lib/python2.7/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall is ill-defined and being set to 0.0 due to no true samples.
+  'recall', 'true', average, warn_for)
 accuracy: 0.829302325581
-precision: 0.330532828283
-recall:    0.31175
+precision: 0.33321978022
+recall:    0.300992063492
 Trying RandomForest...
-accuracy: 0.859302325581
-precision: 0.332976190476
-recall:    0.15805952381
+accuracy: 0.864186046512
+precision: 0.371666666667
+recall:    0.139746031746
 Trying SVC...
 /home/bajcmartinez/anaconda3/envs/test/lib/python2.7/site-packages/sklearn/svm/base.py:220: ConvergenceWarning: Solver terminated early (max_iter=1000).  Consider pre-processing your data with StandardScaler or MinMaxScaler.
   % self.max_iter, ConvergenceWarning)
-accuracy: 0.513023255814
-precision: 0.194920406623
-recall:    0.558857142857
+accuracy: 0.531627906977
+precision: 0.19103343927
+recall:    0.501496031746

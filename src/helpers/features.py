@@ -1,4 +1,49 @@
 from plots import scatter, histogram
+from pprint import pprint
+from sklearn import preprocessing
+from sklearn.feature_selection import SelectKBest, chi2
+from src.tools.feature_format import featureFormat, targetFeatureSplit
+
+
+def find_optimal_features(data, features_list):
+    """
+
+    :param data:
+    :param features_list
+    :return:
+    """
+    print('Finding optimal features')
+    ds = featureFormat(data, features_list, sort_keys=True)
+    labels, features = targetFeatureSplit(ds)
+
+    # Set up the scaler
+    minmax_scaler = preprocessing.MinMaxScaler()
+    features_minmax = minmax_scaler.fit_transform(features)
+
+    # Apply SelectKBest
+    k_best = SelectKBest(chi2, k=10)
+
+    # Use the instance to extract the k best features
+    k_best.fit_transform(features_minmax, labels)
+
+    feature_scores = ['%.2f' % elem for elem in k_best.scores_]
+    feature_scores_pvalues = ['%.3f' % elem for elem in k_best.pvalues_]
+    k_indices = k_best.get_support(indices=True)
+
+    k_features = [(features_list[i + 1],
+                   feature_scores[i],
+                   feature_scores_pvalues[i]) for i in k_indices]
+
+    print('Optimal features:')
+    pprint(k_features)
+
+    optimal = [features_list[i + 1] for i in k_indices]
+    # If poi was not selected, let's manually add it, I'd like to keep it
+    if 'poi' not in optimal:
+        optimal.insert(0, 'poi')
+
+    return optimal
+
 
 def create_new_features(data):
     """
