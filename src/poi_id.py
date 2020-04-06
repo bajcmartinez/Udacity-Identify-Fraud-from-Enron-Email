@@ -61,17 +61,13 @@ labels, features = targetFeatureSplit(data)
 ### http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.StratifiedShuffleSplit.html
 
 # Though is not the best idea, let's run the classifiers against the full features list
-# try_classifiers(my_dataset, features_list)
+print("Trying classifiers with the complete feature list")
+try_classifiers(my_dataset, features_list)
 
 # Now let's try to move from there to finding the best features for the task
+print("Trying classifiers with the optimal feature list")
 optimal_features_list = find_optimal_features(my_dataset, features_list)
-clf = try_classifiers(my_dataset, optimal_features_list)
-
-### Final result:
-# Trying AdaBoost...
-# accuracy: 0.83
-# precision: 0.332838383838
-# recall:    0.3155
+clf = try_classifiers(my_dataset, optimal_features_list, True)
 
 ### Task 6: Dump your classifier, dataset, and features_list so anyone can
 ### check your results. You do not need to change anything below, but make sure

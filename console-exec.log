@@ -69,6 +69,56 @@ Found 4 actual outliers, "CHAN RONNIE, LOCKHART EUGENE E, TOTAL, THE TRAVEL AGEN
 Removed 4 outliers from the dataset
 ('Items on the DS after removal:', 142)
 Adding features...
+Trying classifiers with the complete feature list
+Trying classifiers for features: [poi, salary, deferral_payments, total_payments, loan_advances, bonus, restricted_stock_deferred, deferred_income, total_stock_value, expenses, exercised_stock_options, other, long_term_incentive, restricted_stock, director_fees, to_messages, from_poi_to_this_person, from_messages, from_this_person_to_poi, shared_receipt_with_poi]
+Trying GaussianNB...
+GridSearchCV(cv=None, error_score='raise', estimator=GaussianNB(priors=None),
+       fit_params={}, iid=True, n_jobs=1, param_grid={},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+	Accuracy: 0.73573	Precision: 0.21635	Recall: 0.37450	F1: 0.27426	F2: 0.32673
+	Total predictions: 15000	True positives:  749	False positives: 2713	False negatives: 1251	True negatives: 10287
+
+Trying AdaBoost...
+GridSearchCV(cv=None, error_score='raise',
+       estimator=AdaBoostClassifier(algorithm='SAMME.R',
+          base_estimator=DecisionTreeClassifier(class_weight='balanced', criterion='gini', max_depth=1,
+            max_features=None, max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=2,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            presort=False, random_state=None, splitter='best'),
+          learning_rate=0.8, n_estimators=50, random_state=None),
+       fit_params={}, iid=True, n_jobs=1, param_grid={},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+	Accuracy: 0.82827	Precision: 0.35185	Recall: 0.34200	F1: 0.34686	F2: 0.34393
+	Total predictions: 15000	True positives:  684	False positives: 1260	False negatives: 1316	True negatives: 11740
+
+Trying RandomForest...
+GridSearchCV(cv=None, error_score='raise',
+       estimator=RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=None, max_features='auto', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False),
+       fit_params={}, iid=True, n_jobs=1, param_grid={},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+	Accuracy: 0.85453	Precision: 0.36458	Recall: 0.12250	F1: 0.18338	F2: 0.14126
+	Total predictions: 15000	True positives:  245	False positives:  427	False negatives: 1755	True negatives: 12573
+
+Trying SVC...
+/home/bajcmartinez/anaconda3/envs/test/lib/python2.7/site-packages/sklearn/svm/base.py:220: ConvergenceWarning: Solver terminated early (max_iter=1000).  Consider pre-processing your data with StandardScaler or MinMaxScaler.
+  % self.max_iter, ConvergenceWarning)
+GridSearchCV(cv=None, error_score='raise',
+       estimator=SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape=None, degree=3, gamma='auto', kernel='linear',
+  max_iter=1000, probability=False, random_state=None, shrinking=True,
+  tol=0.001, verbose=False),
+       fit_params={}, iid=True, n_jobs=1, param_grid={},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+	Accuracy: 0.48747	Precision: 0.14055	Recall: 0.55600	F1: 0.22437	F2: 0.34942
+	Total predictions: 15000	True positives: 1112	False positives: 6800	False negatives:  888	True negatives: 6200
+
+Trying classifiers with the optimal feature list
 Finding optimal features
 Optimal features:
 [('salary', '2.99', '0.084'),
@@ -83,24 +133,92 @@ Optimal features:
  ('shared_receipt_with_poi', '2.38', '0.123')]
 Trying classifiers for features: [poi, salary, total_payments, loan_advances, bonus, total_stock_value, expenses, exercised_stock_options, other, long_term_incentive, shared_receipt_with_poi]
 Trying GaussianNB...
-/home/bajcmartinez/anaconda3/envs/test/lib/python2.7/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 due to no predicted samples.
-  'precision', 'predicted', average, warn_for)
-accuracy: 0.723255813953
-precision: 0.362344248041
-recall:    0.350944444444
+GridSearchCV(cv=None, error_score='raise', estimator=GaussianNB(priors=None),
+       fit_params={}, iid=True, n_jobs=1, param_grid={},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+	Accuracy: 0.79640	Precision: 0.22263	Recall: 0.21150	F1: 0.21692	F2: 0.21364
+	Total predictions: 15000	True positives:  423	False positives: 1477	False negatives: 1577	True negatives: 11523
+
 Trying AdaBoost...
-/home/bajcmartinez/anaconda3/envs/test/lib/python2.7/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall is ill-defined and being set to 0.0 due to no true samples.
-  'recall', 'true', average, warn_for)
-accuracy: 0.829302325581
-precision: 0.33321978022
-recall:    0.300992063492
+GridSearchCV(cv=None, error_score='raise',
+       estimator=AdaBoostClassifier(algorithm='SAMME.R',
+          base_estimator=DecisionTreeClassifier(class_weight='balanced', criterion='gini', max_depth=1,
+            max_features=None, max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=2,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            presort=False, random_state=None, splitter='best'),
+          learning_rate=0.8, n_estimators=50, random_state=None),
+       fit_params={}, iid=True, n_jobs=1, param_grid={},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+	Accuracy: 0.82127	Precision: 0.33251	Recall: 0.33800	F1: 0.33523	F2: 0.33689
+	Total predictions: 15000	True positives:  676	False positives: 1357	False negatives: 1324	True negatives: 11643
+
+Trying Tuned AdaBoost...
+GridSearchCV(cv=None, error_score='raise',
+       estimator=AdaBoostClassifier(algorithm='SAMME.R',
+          base_estimator=DecisionTreeClassifier(class_weight='balanced', criterion='gini', max_depth=1,
+            max_features=None, max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=2,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            presort=False, random_state=None, splitter='best'),
+          learning_rate=0.8, n_estimators=50, random_state=None),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'n_estimators': [1, 5, 10, 50]},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+	Accuracy: 0.81280	Precision: 0.32187	Recall: 0.36500	F1: 0.34208	F2: 0.35547
+	Total predictions: 15000	True positives:  730	False positives: 1538	False negatives: 1270	True negatives: 11462
+
 Trying RandomForest...
-accuracy: 0.864186046512
-precision: 0.371666666667
-recall:    0.139746031746
+GridSearchCV(cv=None, error_score='raise',
+       estimator=RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=None, max_features='auto', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False),
+       fit_params={}, iid=True, n_jobs=1, param_grid={},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+	Accuracy: 0.85987	Precision: 0.42672	Recall: 0.14850	F1: 0.22033	F2: 0.17077
+	Total predictions: 15000	True positives:  297	False positives:  399	False negatives: 1703	True negatives: 12601
+
+Trying Tuned RandomForest...
+GridSearchCV(cv=None, error_score='raise',
+       estimator=RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=None, max_features='auto', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'n_estimators': [4, 5, 10, 500]},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+	Accuracy: 0.85427	Precision: 0.38902	Recall: 0.16300	F1: 0.22974	F2: 0.18443
+	Total predictions: 15000	True positives:  326	False positives:  512	False negatives: 1674	True negatives: 12488
+
 Trying SVC...
-/home/bajcmartinez/anaconda3/envs/test/lib/python2.7/site-packages/sklearn/svm/base.py:220: ConvergenceWarning: Solver terminated early (max_iter=1000).  Consider pre-processing your data with StandardScaler or MinMaxScaler.
+GridSearchCV(cv=None, error_score='raise',
+       estimator=SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape=None, degree=3, gamma='auto', kernel='linear',
+  max_iter=1000, probability=False, random_state=None, shrinking=True,
+  tol=0.001, verbose=False),
+       fit_params={}, iid=True, n_jobs=1, param_grid={},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+	Accuracy: 0.47840	Precision: 0.14138	Recall: 0.57400	F1: 0.22688	F2: 0.35608
+	Total predictions: 15000	True positives: 1148	False positives: 6972	False negatives:  852	True negatives: 6028
+
+Trying Tuned SVC...
+/home/bajcmartinez/anaconda3/envs/test/lib/python2.7/site-packages/sklearn/svm/base.py:220: ConvergenceWarning: Solver terminated early (max_iter=1).  Consider pre-processing your data with StandardScaler or MinMaxScaler.
   % self.max_iter, ConvergenceWarning)
-accuracy: 0.531627906977
-precision: 0.19103343927
-recall:    0.501496031746
+/home/bajcmartinez/anaconda3/envs/test/lib/python2.7/site-packages/sklearn/svm/base.py:220: ConvergenceWarning: Solver terminated early (max_iter=100).  Consider pre-processing your data with StandardScaler or MinMaxScaler.
+  % self.max_iter, ConvergenceWarning)
+GridSearchCV(cv=None, error_score='raise',
+       estimator=SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape=None, degree=3, gamma='auto', kernel='linear',
+  max_iter=1000, probability=False, random_state=None, shrinking=True,
+  tol=0.001, verbose=False),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'kernel': ['rbf', 'poly', 'linear'], 'C': [1, 50, 100, 1000], 'max_iter': [1, 100, 1000], 'degree': [1, 2], 'gamma': [0.5, 0.1, 0.01]},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+	Accuracy: 0.86320	Precision: 0.12857	Recall: 0.00450	F1: 0.00870	F2: 0.00558
+	Total predictions: 15000	True positives:    9	False positives:   61	False negatives: 1991	True negatives: 12939
+

@@ -134,18 +134,44 @@ The outliers detection covers 4 steps:
     
     1. Are POIs
     2. Have high interactions with a POI 
+    
+    
+After the full analysis we were able to identify the following outliers: 
+
+| Person | Reason |
+| ------------- |:-------------:|
+| CHAN RONNIE | Incomplete Data |
+| LOCKHART EUGENE E | Incomplete Data |
+| TOTAL | Summary Row |
+| THE TRAVEL AGENCY IN THE PARK | Not a Person |
 
 *The outlier detection and extraction features are described by code on the file `src/helpers/outliers.py`*
 
 ## Feature selection 
-show the 
-Initially we started off the analysis with all the features but this happened to carry a lot of unimportant or 
+show the Initially we started off the analysis with all the features but this happened to carry a lot of unimportant or 
 irrelevant fields for processing I applied an algorithm to detect relevant fields and a separate logic to add new 
 features.
 
 ### Find optimal features
-In order to reduce the noise created by irrelevant features I used a `SelectKBest` algorithm to sort the features and 
-keep only those relevant once
+The method `find_optimal_features` returns a list with the 10 most relevant features according to the algorithm 
+`SelectKBest`. This filter is important to reduce the noise of data for further steps.
+
+The method calculates and sorts the features according to the K highest scores. Here are the results for our optimal run:
+
+| Feature | Score | p-value |
+| ------------- |:-------------:|:-------------:|
+| Salary | 2.99 | 0.084 |
+| total_payments | 2.75 | 0.097 |
+| loan_advances | 6.63 | 0.010 |
+| bonus | 5.05 | 0.025 |
+| total_stock_value | 5.41 | 0.020 |
+| expenses | 1.45 | 0.229 |
+| exercised_stock_options | 6.76 | 0.009 |
+| other | 1.69 | 0.193 |
+| long_term_incentive | 2.50 | 0.114 |
+| shared_receipt_with_poi | 2.38 | 0.123 |
+
+We will see later on this report the impact of running the classifiers before and after applying the feature selection.
 
 ### Adding new features
 New features were created by processing rations of the information we had, here are the new fields:
@@ -185,33 +211,61 @@ The final contains the following features:
 In this section we will explore the different classifiers we tried and finally we are going to pick the one which gave 
 us the optimal results.
 
-### Results per classifier using the optimal features
+| Complete Feature List <br><br> Algorithm | <br><br><br><br>Accuracy | <br><br><br><br>Precision | <br><br><br><br>Recall |  | Optimal Feature List<br><br><br>Accuracy | <br><br><br><br>Precision | <br><br><br><br>Recall |
+| ------------- |-----------------|----------------|----------------|----------------|----------------|----------------|----------------|
+| Gaussian Naive Bayes | 0.73573 | 0.21635 | 0.37450 |  | 0.79640 | 0.22263 | 0.21150 |
+| Ada Boost | 0.82827 | 0.35185 | 0.34200 |  | 0.82127 | 0.33251 | 0.33251 |
+| Ada Boost (Tuned) | - | - | - |  | 0.81280 | 0.32187 | 0.36500 |
+| Random Forest | 0.85453 | 0.36458 | 0.12250 |  | 0.85987 | 0.42672 | 0.14850 |
+| Random Forest (Tuned) | - | - | - |  | 0.85427 | 0.38902 | 0.22974 |
+| SVC | 0.48747 | 0.14055 | 0.55600 |  | 0.47840 | 0.14138 | 0.57400 |
+| SVC (Tuned) | - | - | - |  | 0.86320 | 0.12857 | 0.00450 |
 
-1. Gaussian Naive Bayes
-    ```
-    accuracy: 0.723255813953
-    precision: 0.362344248041
-    recall:    0.350944444444
-    ```
-2. Ada Boost
-    ```
-    accuracy: 0.829302325581
-    precision: 0.33321978022
-    recall:    0.300992063492
-    ```
-3. Random Forest
-    ```
-    accuracy: 0.864186046512
-    precision: 0.371666666667
-    recall:    0.139746031746
-    ```
-4. SVC
-    ```
-    accuracy: 0.531627906977
-    precision: 0.19103343927
-    recall:    0.501496031746
-    ```
+* Precision: in simple words, precision tries to answer the question: `What proportion of positive identifications was actually correct?`
+* Recall: in simple words, recall tries to answer the question: `What proportion of actual positives was identified correctly?`
    
 Since the best results where achieved using Ada Boost, that's the one we selected for the final output.
 
+Additionally is important to highlight the variation of the results by using different feature selection. Let's look
+at each algorithm separately
+
+1. Gaussian Naive Bayes: Though increasing accuracy, we had a significant drop on recall
+2. Ada Boost: Very interesting similar results with a slightly drop on recall
+3. Random Forest: Slightly best results
+4. SVC: Seems to have overall performed better with the complete feature list
+
+We did not use scaling on the algorithms. 
+
  *The feature selection is described by code on the file `src/helpers/analyse.py`*
+ 
+## On Model Tuning
+
+In order to provide a degree of parametrization to the algorithms we will provide support for algorithm tuning through 
+`GridSearchCV`.
+
+Every machine learning algorithm already supports hyper parameters that can be set and modified to deliver different 
+results on the data.
+
+Going through these different parameters, and trying out different values is important to to improve the performance 
+over a particular dataset.
+Adjusting this parameters requires understanding each on of them, and applying unique values that matches your data. The
+same set of values can perform very different on different data, and thus is important to play and set different 
+configurations, and find the optimal values for our case.
+
+Since it can be overwhelming to try every possible combination to find the optimal results, we will use `GridSearchCV` 
+module, as it was designed to automate this process.
+
+![Hyper Parameters](https://miro.medium.com/max/1224/1*iUkbA8Dlj-5B0S8u0oRNbQ.png)
+
+## Validation
+
+Validation is the set of techniques to make sure the model performs well in a wide range of situations, and it's not 
+just optimized for a particular data set or conditions.
+
+Data validation is important to prevent for example, over-fitting.
+
+This phenomena can be studied adjusting the amount of data points assigned to both training and testing sets. The most 
+common way to test for it is with cross validation, a technique that dynamically assigns a percentage to the different 
+sets. 
+
+
